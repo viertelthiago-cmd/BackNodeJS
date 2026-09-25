@@ -1,46 +1,55 @@
-import cliente from "../model/cliente"
-
+import cliente from '../model/cliente.js'
+import RepositoryCliente from '../repository/cliente.js'
 
 class ServiceCliente {
 
     // Core- Regra de Negocio
-    Buscar() {
-         return RepositoryCliente.Find()
+    async Buscar() {
+        return RepositoryCliente.Find()
     }
+
+    async Detalhe(id) {
+        if(!id) {
+            throw new Error("Favor informar o ID")
+        }
+
+        const cliente = await RepositoryCliente.FindById(id)
         
+        if(!cliente) {
+            throw new Error(`ID ${id} do cliente não encontrado`)
+        }
 
-    Detalhe(id) {
-        // if(!id) {
-        //     throw new Error("Favor informar o ID")
-        // }
-        // const carro = carros.find(it => it.id === id)
-
-        // if(!carro) {
-        //     throw new Error(`ID ${id}do carro não encontrado`)
-        // }
-
-        // return carro
+        return cliente
     }
-    //função(parametros)=infinitos.
-    async Criar(id, email, senha) {
-         if (!id || !email || !senha) {
-                throw new Error({ mensagem: "Favor informar todos os dados" })
-                
-            }
-             const cliente = await RepositoryCliente.Create(email, senha)
+    // Função(parametros, parametros, parametros)
+    async Criar(email, senha) {
+        if (!email || !senha) {
+            throw new Error("Favor informar todos os dados")
+        }
 
-             return cliente
+        const cliente = await RepositoryCliente.Create(email, senha)
+
+        return cliente
     }
 
-    Alterar() {}
+    async Alterar(id, email, senha) {
+        if (!id) {
+            throw new Error("Favor informar os dados");
+        }
 
-    Deletar(id) {
-         if (!id){
-         throw new Error("Favor informa o ID")
-         }
-        const cliente =  RepositoryCliente.Delete(id)
+        const clienteAlterado = await RepositoryCliente.Update(id, email, senha)
+        
+        return clienteAlterado
+    }
 
-       return cliente
+    async Deletar(id) {
+        if (!id) {
+            throw new Error("Favor informar o ID")
+        }
+        
+        const cliente = await RepositoryCliente.Delete(id)
+
+        return cliente
     }
 
 }

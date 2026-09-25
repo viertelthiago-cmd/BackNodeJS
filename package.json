@@ -1,8 +1,30 @@
 {
+  "name": "backnodejs",
+  "version": "1.0.0",
+  "description": "aula de backend",
+  "homepage": "https://github.com/viertelthiago-cmd/BackNodeJS#readme",
+  "bugs": {
+    "url": "https://github.com/viertelthiago-cmd/BackNodeJS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viertelthiago-cmd/BackNodeJS.git"
+  },
+  "license": "ISC",
+  "author": "Thiago Pereira",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "express": "^5.2.1",
+    "install":"0.13.0",
+    "jsonwebtoken":"9.0.3",
     "mysql2": "^3.24.4",
     "sequelize": "^6.37.8"
-  }
+  },
+  "devDependencies": {}
 }

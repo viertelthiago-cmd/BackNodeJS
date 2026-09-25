@@ -1,21 +1,22 @@
-import database  from "../config/database.js";
+import database from "../config/database.js";
+
 
 class Cliente {
     constructor() {
-        this.model = database.db.define("clientes", {
+        this.model = database.db.define("carros", {
             id: {
-                type: database.db.Sequelize.INTERGER,
+                type: database.db.Sequelize.INTEGER,
                 primaryKey: true,
                 autoIncrement: true
             },
             email: {
-                type: database.db.Sequelize.INTERGER,
-                unique: true
+                type: database.db.Sequelize.STRING,
             },
             senha: {
-                type: database.db.Sequelize.STRING,
+                type: database.db.Sequelize.INTEGER,
             }
         })
     }
 }
+
 export default new Cliente().model
